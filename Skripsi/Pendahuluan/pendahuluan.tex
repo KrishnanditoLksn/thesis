@@ -2,3 +2,78 @@
 \section{Section example}
 This is an example of a section of a text. It uses the regular indentation for the first line.
 
+\section{Tables}
+Tables use the \texttt{longtblr} environment so it can handle multi-page tables. 
+\begin{longtblr} 
+[caption={Table example},
+label={tab:exampleTable}]
+	{
+		colspec={ c c c }, % Column type
+		rowhead = 1, % Header row
+		row{1} = {font=\bfseries\sffamily}, % Header row styling
+		hlines,	vlines % Table lines
+	}
+	First & Second & Third \\
+	1 & 2 & 3
+\end{longtblr}
+
+
+\section{Images}
+Images will make use of the \texttt{images} environment with the [H] float in order to anchor it to its position in the page.
+\begin{figure}[H]
+	\centering
+	\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+	\caption{Image Example}
+	\label{fig:exampleFigure}
+\end{figure}
+
+\subsection{Subimages}
+Multiple images can be had in a single figure environment using the subfigure environment.
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\textwidth}
+		\centering
+		\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+		\caption{First Figure}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\centering
+		\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+		\caption{Second Figure}
+	\end{subfigure}
+	\caption{Subfigures.}
+\end{figure}
+
+\section{Labeling}
+Some environments can be labeled, such as tables and figures. There are several things to consider when creating labels. \texttt{longtblr} environments use parameters to define labels, which can be seen in the example below.
+
+\begin{lstlisting}
+\begin{longtblr} 
+	[caption={Table example},
+	 label={tab:exampleTable} <---------LABEL
+	]
+	{
+		colspec={ c c c }, % Column type
+		rowhead = 1, % Header row
+		row{1} = {font=\bfseries\sffamily}, % Header row styling
+		hlines,	vlines % Table lines
+	} 
+	First & Second & Third \\
+	1 & 2 & 3
+\end{longtblr}
+\end{lstlisting}
+
+\noindent which can be refered by calling \texttt{\detokenize{\ref{tab:exampleTable}}}. When called, it will look something like this: \ref{tab:exampleTable}. The reference does not contain the name of the object being refered, only the number. Therefore, it is best to include the name of the object, such as: Table \ref{tab:exampleTable}.
+
+Images are labeled using the \texttt{\detokenize{\label{}}} command. An example is shown below:
+
+\begin{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+	\caption{Image Example}
+	\label{fig:exampleFigure} <----------------LABEL
+\end{figure}
+\end{lstlisting}
+
+\noindent where refering to said label can be done with the afformentioned \texttt{\detokenize{\ref{}}} command. Subfigures can also be refered in this manner, so make use of it when you wish to do so.
